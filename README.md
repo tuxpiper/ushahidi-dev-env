@@ -31,12 +31,12 @@ Additionally, as a requirement of the platform itself:
   * In Docker Toolbox, this is known as the _"Docker Quickstart Terminal"_
 * In that same console window run
 
-      ./ush.sh create <path to your project folder>
+        ./ush.sh create (path to your project folder)
 
   * This will create your project folder and copy the scripts in this repo there
 * From your project folder run
 
-      GITHUB_TOKEN=<your github access token> ./ush.sh start
+        GITHUB_TOKEN=(your github access token>) ./ush.sh start
 
   * This will clone the Ushahidi Platform repositories into your project folder, build the docker
     containers necessary for running the components and start them.
@@ -45,7 +45,7 @@ Additionally, as a requirement of the platform itself:
 
 * Once the start process is finished, your installation will be running on
 
-      http://<your docker engine ip>:8080
+        http://(your docker engine ip):8080
 
   * In order to find out the docker engine ip, most of Docker Toolbox users would run the command `docker-machine ip default`
 
@@ -53,7 +53,7 @@ Additionally, as a requirement of the platform itself:
 
 ## How do I...
 
-We are just getting started with this tool and there's only a few things we've had time to teach it.
+We are just getting started with this tool and there's only a few things we've had time to teach it to do.
 
 On top of that, working on a Docker development environment is not yet really developer friendly. If you haven't done it before, you will struggle. Be patient.
 
