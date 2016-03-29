@@ -1,0 +1,49 @@
+version: "2"
+services:
+  mysql:
+    build:
+      context: ./docker/mysql
+      dockerfile: Dockerfile
+    environment:
+      MYSQL_DATABASE: ushahidi
+      MYSQL_USER: ushahidi
+      MYSQL_PASSWORD: ushahidi
+  api:
+    build:
+      context: ./docker/platform
+      dockerfile: Dockerfile
+      args:
+        GITHUB_TOKEN: ${GITHUB_TOKEN}
+    links:
+      - mysql
+    environment:
+      MYSQL_HOST: mysql
+      MYSQL_DATABASE: ushahidi
+      MYSQL_USER: ushahidi
+      MYSQL_PASSWORD: ushahidi
+    volumes:
+      - ${PLATFORM_DIR}:/vols/src:ro
+  web:
+    build:
+      context: ./docker/platform-client
+      dockerfile: Dockerfile
+    volumes:
+      - ${PLATFORM_CLIENT_DIR}:/vols/src:ro
+    environment:
+      BACKEND_URL: "./"
+  nginx:
+    build:
+      context: ./docker/nginx
+      dockerfile: Dockerfile
+    links:
+      - api
+      - web
+    environment:
+      API_HOST: api
+      API_PORT: '9000'
+      WEB_HOST: web
+      WEB_PORT: '8080'
+    ports:
+      - ${PORT}:80
+    volumes_from:
+      - web
