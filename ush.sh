@@ -74,7 +74,7 @@ check_target() {
 start() {
   copy_deps
   compose build
-  compose up
+  compose up $*
 }
 
 stop() {
@@ -105,17 +105,20 @@ case "$1" in
     echo "Success"
     ;;
   start)
-    start
+    shift
+    start $*
     ;;
   stop)
-    stop
+    shift
+    stop $*
     ;;
   restart)
     compose stop
     compose up
     ;;
   rm)
-    rm
+    shift
+    rm $*
     ;;
   logs)
     shift 1

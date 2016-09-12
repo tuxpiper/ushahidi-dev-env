@@ -27,6 +27,8 @@ services:
     build:
       context: ./docker/platform-client
       dockerfile: Dockerfile
+      args:
+        GITHUB_TOKEN: ${GITHUB_TOKEN}
     volumes:
       - ${PLATFORM_CLIENT_DIR}:/vols/src:ro
     environment:
