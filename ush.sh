@@ -72,7 +72,7 @@ check_target() {
 #
 
 start() {
-  copy_deps
+#  copy_deps
   compose build
   compose up $*
 }
@@ -113,8 +113,9 @@ case "$1" in
     stop $*
     ;;
   restart)
-    compose stop
-    compose up
+    shift
+    compose stop $*
+    compose up $*
     ;;
   rm)
     shift

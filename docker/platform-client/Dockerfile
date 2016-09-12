@@ -10,6 +10,7 @@ RUN git config --global url."https://${GITHUB_TOKEN}@github.com/".insteadOf git@
 RUN npm install -g gulp@3.9.0 gulp-notify@2.2.0 grunt-cli@0.1.13
 
 WORKDIR /var/app
+ENV ROOT_BUILD true
 COPY package.json /var/app
 RUN npm install
 
